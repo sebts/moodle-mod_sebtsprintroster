@@ -2,9 +2,9 @@
 require_once("../../config.php");
 require_once('lib.php');
 
-
 $id = required_param('id', PARAM_INT);                 // course id
 $layoutid = optional_param('layoutid', 0, PARAM_INT);  // print layout id
+$mode = RENDER_MODE_PREVIEW;
 
 if (!empty($id)) {
     $course = get_course($id);
@@ -28,7 +28,6 @@ $PAGE->set_cacheable(false);
 $PAGE->set_pagelayout('incourse');
 
 
-$mode = RENDER_MODE_PREVIEW;
 if (empty($layoutid) || $layoutid <= 0 ) {
     $layoutid = get_default_layout($USER->id,$course->id);
 }
