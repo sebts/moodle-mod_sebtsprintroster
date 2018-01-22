@@ -50,6 +50,7 @@ function create_roster($courseid,$rendermode,$layoutid) {
          . "  INNER JOIN {role}             rol ON ras.roleid=rol.id AND rol.name IN ('Student','Auditor')"
          . "  INNER JOIN {context}          ctx ON ras.contextid=ctx.id AND ctx.contextlevel=" . CONTEXT_COURSE
          . "  INNER JOIN {course}           crs ON ctx.instanceid=crs.id"
+         . "  INNER JOIN {user_enrolments}  enr ON ras.userid=enr.userid AND ras.itemid=enr.enrolid and enr.status=0"		 
          . " WHERE crs.id=$courseid"
          . " ORDER BY rol.name, usr.lastname, usr.firstname;";
     $studentslisting = $DB->get_recordset_sql($sql);
